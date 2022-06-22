@@ -6,8 +6,10 @@ import {ctx} from './obj.js'
 
 let moveR=false,moveL=false,moveU=false,moveD=false,move=false;
 
-canvas.width=screen.width;
-canvas.height=screen.height;
+//canvas.width=screen.width;
+//canvas.height=screen.height;
+canvas.width=800;
+canvas.height=600;
 canvas.style.backgroundColor="black";
 
 let i = new Obj(800,350,64,64,3);
