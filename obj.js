@@ -2,6 +2,14 @@
  
 export const canvas = document.getElementById("Canvas");
 export const ctx = canvas.getContext("2d");
+
+
+///anima imagem
+let xIndex =0
+setInterval(()=>xIndex=32,125);
+setInterval(()=>xIndex=0,250);
+
+
 export default class Obj {
   constructor(x, y, w, h, spd) {
     this.x = x
@@ -21,6 +29,20 @@ export default class Obj {
     ctx.fillRect(this.x, this.y, this.w,this.h);
     ctx.restore()
   };
+  drawRect(c){
+    
+    ctx.beginPath();
+    ctx.strokeStyle = c;
+    ctx.rect(this.x, this.y, this.w,this.h);
+    ctx.stroke();
+   
+  };
+  tileSet=(img)=>{
+                    
+    this.img=img;
+      ctx.drawImage(this.img,this.x,this.y,this.w,this.h); 
+  
+    };
 
    collide(hitX,hitY,hitW,hitH){
     this.collideBolean = false;
