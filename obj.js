@@ -55,17 +55,14 @@ if(this.x<=this.hitX+this.hitW&&this.x+this.w>=this.hitX&&this.y+this.h>=this.hi
 
 }; 
 
-hudMsg(msgX,msgY,msg){
-this.msgX=msgX;
-this.msgY=msgY;
+hudMsg(msg){
+
 ctx.save()
 ctx.font = "30px Comic Sans MS";
 ctx.fillStyle = "white";
-ctx.textAlign = "center";
-ctx.fillText(msg, this.msgX, this.msgY);
+ctx.fillText(msg, this.x, this.y+64);
 ctx.restore()
 }
-
 
 
 
