@@ -6,11 +6,9 @@ import {ctx} from './obj.js'
 
 canvas.width=screen.width;
 canvas.height=screen.height;
-//canvas.width=990;
-//canvas.height=720;
+
 canvas.style.backgroundColor="#657996";
 
-//let bck = document.getElementById("bck");
 let bck = document.createElement("IMG");
 bck.setAttribute("src", "./assets/bck-dirt.png");
 
