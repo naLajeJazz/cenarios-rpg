@@ -12,7 +12,7 @@ canvas.style.backgroundColor="#28303C";
 let bck = document.createElement("IMG");
 bck.setAttribute("src", "./assets/bck-dirt.png");
 let cenary=new Obj (200,0,1024,1024);
-//let tile =new Obj(200,0,128,128);
+
 let selector =new Obj(200,0,128,128)
 let tiles=[new Obj(200,0,128,128)];
 
@@ -42,22 +42,26 @@ window.addEventListener("keydown",function(event){
 },false);
 
 
-
 function game (){
+  
 requestAnimationFrame(game,canvas);
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-let n=tiles.length-1
+let n=tiles.length
+for(let i=0;i<n;i++){
+
+  tiles[i].tileSet(bck)
+}
+
 
 cenary.drawRect("#657996");
 
 
-tiles[n].tileSet(bck)
-
-
 selector.drawRect("#657996")
-selector.hudMsg(n)
+selector.hudMsg(tiles.length)
+//selector.hudMsg(n)
 
 
 };
 game();
+
