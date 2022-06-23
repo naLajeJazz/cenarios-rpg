@@ -9,13 +9,25 @@ canvas.height=screen.height;
 canvas.style.backgroundColor="#28303C";
 
 
+
+
+let selector =[new Obj(0,0,32,32),new Obj(0,0,64,64),new Obj(0,0,96,96),new Obj(0,0,128,128)]
+let tiles=[];
+let selectorN=0
+let tileDim=32
+let hud=new Obj(100,canvas.height-96)
+
+let bckImageN=0
 let bck = document.createElement("IMG");
-bck.setAttribute("src", "./assets/bck-dirt.png");
-let cenary=new Obj (200,0,1024,1024);
+let bckImage=""
+//let bckImage=["./assets/bck-dirt.png","./assets/bck-dirt-1.png"]
 
-let selector =new Obj(200,0,128,128)
-let tiles=[new Obj(200,0,128,128)];
 
+if(bckImageN==0){
+  bck.setAttribute("src","./assets/bck-dirt.png");
+  }else if (bckImageN==1){
+    bck.setAttribute("src","./assets/bck-dirt-1.png");
+   }
 
 
 window.addEventListener("keydown",function(event){
@@ -23,20 +35,38 @@ window.addEventListener("keydown",function(event){
   let k= event.key;
 
   if (k == "d" ){
-      selector.x+=128
+      selector[selectorN].x+=tileDim
+     
           
   }else if(k =="a" ){
-    selector.x-=128
+    selector[selectorN].x-=tileDim
+    
       
   }else if(k == "w"  ){
-    selector.y-=128
+    selector[selectorN].y-=tileDim
+  
         
   }else if(k == "s"  ){
-    selector.y+=128
+    selector[selectorN].y+=tileDim
+    
         
   }else if(k == "e"  ){
-    tiles.push(new Obj(selector.x,selector.y,128,128))
-     
+    selectorN++
+    tileDim+=32
+  }else if(k == "q"  ){
+    selectorN--
+    tileDim-=32
+    
+  }else if(k == "b"  ){
+    bckImageN++
+    
+  }else if(k == "v"  ){
+    bckImageN--
+    
+  }
+  else if(k == "c"  ){
+    tiles.push(new Obj(selector[selectorN].x,selector[selectorN].y,128,128))
+    
   }
       
 },false);
@@ -46,20 +76,38 @@ function game (){
   
 requestAnimationFrame(game,canvas);
 ctx.clearRect(0,0,canvas.width,canvas.height);
+/*
+if(selectorN==0){
+  tileDim=64
+}else if (selectorN==1){
+  tileDim=128
+}*/
+
+
+
 
 let n=tiles.length
 for(let i=0;i<n;i++){
 
   tiles[i].tileSet(bck)
+  
 }
 
 
-cenary.drawRect("#657996");
 
 
-selector.drawRect("#657996")
-selector.hudMsg(tiles.length)
-//selector.hudMsg(n)
+
+selector[selectorN].drawRect("#657996")
+
+
+
+hud.hudMsg( `
+selectorN: ${selectorN} 
+tileDim: ${tileDim}
+bckImageN: ${bckImageN}
+
+` )
+
 
 
 };
